@@ -116,7 +116,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: screenWidth * 0.025),
+                        margin: EdgeInsets.only(left: screenWidth * 0.023),
                         child: PinEntryTextField(
                           fields: 6,
                           onSubmit: (text) {
@@ -159,6 +159,19 @@ class _OtpScreenState extends State<OtpScreen> {
 
   //Method for generate otp from firebase
   Future<void> generateOtp(String contact) async {
+    try {
+      final AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: smsOTP,
+      );
+      var user = await _auth.signInWithCredential(credential);
+       var currentUser = await _auth.currentUser;
+      assert(user.user.uid == currentUser.uid);
+      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacementNamed('/homepage');
+    } catch ( e) {
+      handleError(e);
+    }
     final PhoneCodeSent smsOTPSent = (String verId, [int forceCodeResend]) {
       verificationId = verId;
     };
@@ -173,7 +186,7 @@ class _OtpScreenState extends State<OtpScreen> {
           codeSent: smsOTPSent,
           timeout: const Duration(seconds: 60),
           verificationCompleted: (AuthCredential phoneAuthCredential) {},
-          verificationFailed: (AuthException exception) {
+          verificationFailed: (exception) {
            Navigator.pop(context, exception.message);
           });
     } catch (e) {
@@ -190,21 +203,21 @@ class _OtpScreenState extends State<OtpScreen> {
       return;
     }
     try {
-      final AuthCredential credential = PhoneAuthProvider.getCredential(
+      final AuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId,
         smsCode: smsOTP,
       );
-      final AuthResult user = await _auth.signInWithCredential(credential);
-      final FirebaseUser currentUser = await _auth.currentUser();
+      var user = await _auth.signInWithCredential(credential);
+      var  currentUser = _auth.currentUser;
       assert(user.user.uid == currentUser.uid);
       Navigator.pushReplacementNamed(context, '/homeScreen');
     } catch (e) {
-      handleError(e as PlatformException);
+      handleError(e);
     }
   }
 
   //Method for handle the errors
-  void handleError(PlatformException error) {
+  void handleError(var error) {
     switch (error.code) {
       case 'ERROR_INVALID_VERIFICATION_CODE':
         FocusScope.of(context).requestFocus(FocusNode());
