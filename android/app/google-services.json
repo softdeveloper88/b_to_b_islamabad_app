@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "93061166113",
+    "project_id": "b2b-islamabad-project",
+    "storage_bucket": "b2b-islamabad-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93061166113:android:ea0d3465f743ef0a33df60",
+        "android_client_info": {
+          "package_name": "com.example.b_to_b_islamabad_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93061166113-913d4t8p1e55qcu2s68c9gicks0vm80l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.b_to_b_islamabad_app",
+            "certificate_hash": "8ccd8b193c60955042420758857d8a267aaf853b"
+          }
+        },
+        {
+          "client_id": "93061166113-hbfsfn3ioat7p6v8dgc2295jd4v24p7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRfdOzSk22kdwrgpPJq4qWWbmDYV1SIQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93061166113-hbfsfn3ioat7p6v8dgc2295jd4v24p7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
