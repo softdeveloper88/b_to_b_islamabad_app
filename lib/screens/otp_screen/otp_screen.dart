@@ -208,7 +208,7 @@ class _OtpScreenState extends State<OtpScreen> {
         smsCode: smsOTP,
       );
       var user = await _auth.signInWithCredential(credential);
-      var  currentUser = _auth.currentUser;
+      var currentUser = _auth.currentUser;
       assert(user.user.uid == currentUser.uid);
       Navigator.pushReplacementNamed(context, '/homeScreen');
     } catch (e) {
